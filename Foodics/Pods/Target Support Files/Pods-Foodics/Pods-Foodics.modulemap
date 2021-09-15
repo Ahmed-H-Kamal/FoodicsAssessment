@@ -1,0 +1,6 @@
+framework module Pods_Foodics {
+  umbrella header "Pods-Foodics-umbrella.h"
+
+  export *
+  module * { export * }
+}
