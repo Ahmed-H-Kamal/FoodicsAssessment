@@ -51,3 +51,12 @@ extension UIColor
       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
     }
 }
+
+extension UIView{
+    func showPopup(viewModel: PopupViewModel){
+        if let popupView = PopupView.createViewWithMode(viewModel: viewModel){
+            self.addSubview(popupView)
+            self.bringSubviewToFront(popupView)
+        }
+    }
+}

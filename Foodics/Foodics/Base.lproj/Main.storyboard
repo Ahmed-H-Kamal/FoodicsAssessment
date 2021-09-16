@@ -11,12 +11,12 @@
         <!--Menu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CategoriesViewController" customModule="Foodics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CategoriesViewController" storyboardIdentifier="CategoriesViewController" id="BYZ-38-t0r" customClass="CategoriesViewController" customModule="Foodics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnB-Of-bdU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnB-Of-bdU">
                                 <rect key="frame" x="0.0" y="50" width="768" height="974"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -56,6 +56,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNm-NU-KRI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="95.652173913043484" y="75.669642857142847"/>
+        </scene>
+        <!--Menu-->
+        <scene sceneID="6ET-r2-cRC">
+            <objects>
+                <viewController restorationIdentifier="ProductsViewController" storyboardIdentifier="ProductsViewController" id="h4e-80-MQG" customClass="ProductsViewController" customModule="Foodics" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f2j-JV-zfR">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5lA-wr-sAZ">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ehZ-Iz-Kaj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5lA-wr-sAZ" firstAttribute="centerX" secondItem="ehZ-Iz-Kaj" secondAttribute="centerX" id="GaA-Fp-yGz"/>
+                            <constraint firstItem="5lA-wr-sAZ" firstAttribute="centerY" secondItem="ehZ-Iz-Kaj" secondAttribute="centerY" id="gdU-tq-VkU"/>
+                            <constraint firstItem="5lA-wr-sAZ" firstAttribute="height" secondItem="ehZ-Iz-Kaj" secondAttribute="height" id="pk3-Ld-jzJ"/>
+                            <constraint firstItem="5lA-wr-sAZ" firstAttribute="width" secondItem="f2j-JV-zfR" secondAttribute="width" id="yvF-GK-med"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Menu" id="UmN-PL-V8e"/>
+                    <connections>
+                        <outlet property="tableView" destination="5lA-wr-sAZ" id="8xL-Wt-g9v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bwy-rA-AUk" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1719" y="76"/>
         </scene>
     </scenes>
     <resources>

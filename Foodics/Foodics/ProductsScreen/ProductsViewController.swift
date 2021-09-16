@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-class CategoriesViewController: BaseViewController {
-    lazy var controller : CategoriesController = {
-        return CategoriesController()
+class ProductsViewController: BaseViewController {
+    lazy var controller : ProductsController = {
+        return ProductsController()
     }()
     
-    var viewModel : CategoriesViewModel {
+    var viewModel : ProductsViewModel {
         return controller.viewModel
     }
     
@@ -25,7 +25,7 @@ class CategoriesViewController: BaseViewController {
         super.viewDidLoad()
         self.registerCells()
         self.setupBinding()
-        self.getCategories()
+        self.getProductsByCategory()
     }
     
     private func setupBinding() {
@@ -43,16 +43,18 @@ class CategoriesViewController: BaseViewController {
             }
         }
         
-        self.viewModel.categoriesList.addObserver() { [weak self] (categories) in
+        self.viewModel.productsList.addObserver() { [weak self] (categories) in
             self?.controller.buildViewModels()
         }
         
-        self.viewModel.didSelectCategory = { (id) in
-            self.goToProductsScreen()
+        self.viewModel.didSelectProduct = { (id) in
+
         }
         
-        self.viewModel.showProductPopup = { (product) in
-            self.view.showPopup(viewModel: PopupViewModel(product: product))
+        self.viewModel.shouldDismiss.addObserver { (shouldDismiss) in
+            if shouldDismiss {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
     }
@@ -65,36 +67,25 @@ class CategoriesViewController: BaseViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.tableView.register(UINib.init(nibName: NavigationHeaderViewCell.cellIdentifier(), bundle: nil), forCellReuseIdentifier: NavigationHeaderViewCell.cellIdentifier())
-        
-        self.tableView.register(UINib.init(nibName: CategoriesViewCell.cellIdentifier(), bundle: nil), forCellReuseIdentifier: CategoriesViewCell.cellIdentifier())
+        self.tableView.register(UINib.init(nibName: ProductTableViewCell.cellIdentifier(), bundle: nil), forCellReuseIdentifier: ProductTableViewCell.cellIdentifier())
 
     }
     
-    func getCategories() {
+    func getProductsByCategory() {
         self.viewModel.isLoading.value = true
-        self.viewModel.getCategories() { (response, error) in
+        self.viewModel.getProducts() { (response, error) in
             if error == nil{
                 if let list = response?.data{
-                    self.viewModel.categoriesList.value = list
+                    self.viewModel.productsList.value = list
                 }
             }
             self.viewModel.isLoading.value = false
         }
     }
-    
-    
-    func goToProductsScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "ProductsViewController") as? ProductsViewController {
-            controller.viewModel.delegate = self.controller
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
-    }
 
 }
 // MARK:- Table View Data Delegates
-extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource
+extension ProductsViewController: UITableViewDelegate, UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.viewModel.sectionViewModels.value.count
@@ -133,10 +124,8 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource
         let rowViewModel = sectionViewModel.rowViewModels[indexPath.row]
 
             switch rowViewModel {
-            case is NavigationHeaderViewModel:
-                return 50
-            case is CategoriesListViewModel:
-                return self.view.frame.size.height + 50
+            case is ProductTableViewModel:
+                return 160
             default:
                 return UITableView.automaticDimension
         }

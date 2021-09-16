@@ -63,7 +63,7 @@ extension CategoriesViewCell : UICollectionViewDelegate, UICollectionViewDataSou
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: self.frame.size.width, height: 160)
+        layout.itemSize = CGSize(width: self.frame.size.width / 2, height: 160)
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
     }

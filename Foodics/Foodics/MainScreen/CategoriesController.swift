@@ -7,7 +7,8 @@
 
 import Foundation
 
-class CategoriesController: NSObject {
+class CategoriesController: NSObject, SelectProductDelegate {
+    
     let viewModel : CategoriesViewModel
     
     init(viewModel: CategoriesViewModel = CategoriesViewModel()) {
@@ -35,5 +36,8 @@ class CategoriesController: NSObject {
         self.viewModel.sectionViewModels.value = sectionViewModels
     }
     
+    func didSelectProductItem(product: Product) {
+        self.viewModel.showProductPopup?(product)
+    }
     
 }

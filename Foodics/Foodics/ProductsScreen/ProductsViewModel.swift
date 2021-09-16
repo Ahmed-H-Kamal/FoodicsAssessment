@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-class CategoriesViewModel: NSObject {
+class ProductsViewModel: NSObject {
     let isLoading = Observable<Bool>(false)
     let sectionViewModels = Observable<[SectionViewModel]>([])
-    let categoriesList = Observable<[Category]>([])
-    var didSelectCategory : ((String) -> Void)?
-    var showProductPopup : ((Product) -> Void)?
+    let productsList = Observable<[Product]>([])
+    var didSelectProduct : ((Product) -> Void)?
+    var delegate : SelectProductDelegate?
+    let shouldDismiss = Observable<Bool>(false)
 
-    
-    func getCategories(completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
+    func getProducts(completion: @escaping(_ categories:ProductsList?, _ error: Error?) -> Void)
     {
-        let url = "https://api.foodics.dev/v5/categories"
+        let url = "https://api.foodics.dev/v5/products?include=category"
         
         ApiManager.makeApiCall(with: url, method: .get) { (response, error) in
             if (error != nil) {
@@ -27,7 +27,7 @@ class CategoriesViewModel: NSObject {
             else {
                 if let data = response {
                     do {
-                        let decoded = try JSONDecoder().decode(CategoriesList.self, from: data)
+                        let decoded = try JSONDecoder().decode(ProductsList.self, from: data)
                         completion (decoded, nil)
                     } catch {
                         print("*** ERROR *** \(error)")
