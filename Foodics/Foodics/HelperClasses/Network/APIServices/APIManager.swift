@@ -62,8 +62,11 @@ class ApiManager: BaseApiManager {
     }
     
     class func getAPIHeader() -> HTTPHeaders {
-        let header = ["Accept" : "application/json",
+       
+        var header = ["Accept" : "application/json",
                       "Content-Type" : "application/json"]
+        
+        header["Authorization"] = "Bearer \(Constants.token)"
         
         return HTTPHeaders.init(header)
     }

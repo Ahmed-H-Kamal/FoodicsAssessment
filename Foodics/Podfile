@@ -8,4 +8,5 @@ target 'Foodics' do
   # Pods for Foodics
     pod 'Alamofire'
     pod 'SVProgressHUD'
+    pod 'SDWebImage', '~> 5.0'
 end
