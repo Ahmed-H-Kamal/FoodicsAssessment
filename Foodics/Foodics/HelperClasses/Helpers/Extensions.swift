@@ -59,4 +59,12 @@ extension UIView{
             self.bringSubviewToFront(popupView)
         }
     }
+    
+    func showRetryAgainView(retryButtonClick: (() -> Void)? ,viewModel: RetryAgainViewModel){
+        if let view = RetryAgainView.createViewWithMode(viewModel: viewModel){
+            view.viewModel?.retryButtonClick = retryButtonClick
+            self.addSubview(view)
+            self.bringSubviewToFront(view)
+        }
+    }
 }

@@ -20,62 +20,11 @@
                                 <rect key="frame" x="0.0" y="50" width="768" height="974"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ufv-ER-Q7y">
-                                <rect key="frame" x="192" y="415.5" width="384" height="243.5"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.icloud.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kCV-fc-fkf">
-                                        <rect key="frame" x="134.5" y="52" width="115" height="45"/>
-                                        <color key="tintColor" red="0.87720443263198389" green="0.0" blue="0.024630209187403305" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="General Error Please try again" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKA-ig-HQO" customClass="EMECustomLabel">
-                                        <rect key="frame" x="70" y="119.5" width="244" height="20"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleKey" value="promosCellCannotLoadLabel"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOl-KV-U7V">
-                                        <rect key="frame" x="115" y="159.5" width="154" height="48.5"/>
-                                        <color key="backgroundColor" red="0.086274509803921567" green="0.62745098039215685" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                                        <state key="normal" title="Retry Now" image="arrow.clockwise.icloud" catalog="system"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="12"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="retryNowButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="40R-zl-dNx"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="kCV-fc-fkf" firstAttribute="centerX" secondItem="Ufv-ER-Q7y" secondAttribute="centerX" id="0Ql-TS-uml"/>
-                                    <constraint firstItem="kCV-fc-fkf" firstAttribute="width" secondItem="Ufv-ER-Q7y" secondAttribute="width" multiplier="0.3" id="6Ee-fr-ogS"/>
-                                    <constraint firstItem="FOl-KV-U7V" firstAttribute="centerX" secondItem="kCV-fc-fkf" secondAttribute="centerX" id="EfO-JY-2to"/>
-                                    <constraint firstItem="FOl-KV-U7V" firstAttribute="top" secondItem="xKA-ig-HQO" secondAttribute="bottom" constant="20" id="Khe-5p-40N"/>
-                                    <constraint firstItem="xKA-ig-HQO" firstAttribute="centerX" secondItem="Ufv-ER-Q7y" secondAttribute="centerX" id="Ycv-3J-Y72"/>
-                                    <constraint firstItem="xKA-ig-HQO" firstAttribute="top" secondItem="kCV-fc-fkf" secondAttribute="bottom" constant="20" id="arp-7U-qO8"/>
-                                    <constraint firstItem="FOl-KV-U7V" firstAttribute="width" secondItem="Ufv-ER-Q7y" secondAttribute="width" multiplier="0.4" id="cbz-r8-YgC"/>
-                                    <constraint firstItem="kCV-fc-fkf" firstAttribute="height" secondItem="Ufv-ER-Q7y" secondAttribute="height" multiplier="0.2" id="kHW-da-07g"/>
-                                    <constraint firstItem="xKA-ig-HQO" firstAttribute="centerY" secondItem="Ufv-ER-Q7y" secondAttribute="centerY" constant="8" id="n3U-hK-9CQ"/>
-                                    <constraint firstItem="FOl-KV-U7V" firstAttribute="height" secondItem="Ufv-ER-Q7y" secondAttribute="height" multiplier="0.2" id="qJw-rz-0mn"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ufv-ER-Q7y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="5x2-pP-0Tn"/>
-                            <constraint firstItem="Ufv-ER-Q7y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KiX-fR-djb"/>
                             <constraint firstItem="PnB-Of-bdU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PiW-bd-wUi"/>
-                            <constraint firstItem="Ufv-ER-Q7y" firstAttribute="height" secondItem="PnB-Of-bdU" secondAttribute="height" multiplier="0.25" id="erG-gd-ju5"/>
-                            <constraint firstItem="Ufv-ER-Q7y" firstAttribute="width" secondItem="PnB-Of-bdU" secondAttribute="width" multiplier="0.5" id="kBA-iJ-4ja"/>
                             <constraint firstItem="PnB-Of-bdU" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="n11-kc-hrk"/>
                             <constraint firstItem="PnB-Of-bdU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="sl4-QL-jhr"/>
                             <constraint firstItem="PnB-Of-bdU" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="xHT-Av-Qcp"/>
@@ -83,7 +32,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Menu" id="79B-bF-dWv"/>
                     <connections>
-                        <outlet property="errorView" destination="Ufv-ER-Q7y" id="yLV-Fp-VaK"/>
                         <outlet property="tableView" destination="PnB-Of-bdU" id="hQl-fr-OP0"/>
                     </connections>
                 </viewController>
@@ -142,8 +90,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise.icloud" catalog="system" width="128" height="88"/>
-        <image name="xmark.icloud.fill" catalog="system" width="128" height="88"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

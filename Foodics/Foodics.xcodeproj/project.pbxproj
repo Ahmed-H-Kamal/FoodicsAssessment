@@ -50,6 +50,9 @@
 		8C98D21826F32D44001DED5A /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C98D21726F32D44001DED5A /* PopupView.swift */; };
 		8C98D21D26F3341B001DED5A /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C98D21C26F3341B001DED5A /* PopupView.xib */; };
 		8C98D22026F335E5001DED5A /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C98D21F26F335E5001DED5A /* PopupViewModel.swift */; };
+		8CE6B09E26F488910078630C /* RetryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6B09D26F488910078630C /* RetryAgainView.swift */; };
+		8CE6B0A226F488A20078630C /* RetryAgainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6B0A126F488A20078630C /* RetryAgainViewModel.swift */; };
+		8CE6B0A526F488AE0078630C /* RetryAgainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE6B0A426F488AE0078630C /* RetryAgainView.xib */; };
 		C48FA0B1C0E4F9129D41E7A5 /* Pods_Foodics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E6EF324028936EE66F0AFD /* Pods_Foodics.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +105,9 @@
 		8C98D21726F32D44001DED5A /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		8C98D21C26F3341B001DED5A /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		8C98D21F26F335E5001DED5A /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
+		8CE6B09D26F488910078630C /* RetryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryAgainView.swift; sourceTree = "<group>"; };
+		8CE6B0A126F488A20078630C /* RetryAgainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryAgainViewModel.swift; sourceTree = "<group>"; };
+		8CE6B0A426F488AE0078630C /* RetryAgainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RetryAgainView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,11 +360,30 @@
 		8C98D21626F32CED001DED5A /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				8CE6B09C26F4886A0078630C /* RetryAgainView */,
+				8CE6B09B26F4885B0078630C /* PopupView */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		8CE6B09B26F4885B0078630C /* PopupView */ = {
+			isa = PBXGroup;
+			children = (
 				8C98D21726F32D44001DED5A /* PopupView.swift */,
 				8C98D21C26F3341B001DED5A /* PopupView.xib */,
 				8C98D21F26F335E5001DED5A /* PopupViewModel.swift */,
 			);
-			path = CustomViews;
+			path = PopupView;
+			sourceTree = "<group>";
+		};
+		8CE6B09C26F4886A0078630C /* RetryAgainView */ = {
+			isa = PBXGroup;
+			children = (
+				8CE6B09D26F488910078630C /* RetryAgainView.swift */,
+				8CE6B0A126F488A20078630C /* RetryAgainViewModel.swift */,
+				8CE6B0A426F488AE0078630C /* RetryAgainView.xib */,
+			);
+			path = RetryAgainView;
 			sourceTree = "<group>";
 		};
 		8FBC49123E6D7DB6CE7A76B1 /* Frameworks */ = {
@@ -439,6 +464,7 @@
 			files = (
 				8C0CDD9626F2B3CE004861CD /* CategoriesViewCell.xib in Resources */,
 				8C0CDD1D26F24627004861CD /* LaunchScreen.storyboard in Resources */,
+				8CE6B0A526F488AE0078630C /* RetryAgainView.xib in Resources */,
 				8C98D21026F2D198001DED5A /* ProductTableViewCell.xib in Resources */,
 				8C0CDD8126F2B020004861CD /* NavigationHeaderViewCell.xib in Resources */,
 				8C0CDD9226F2B3CE004861CD /* CategoryItemViewCell.xib in Resources */,
@@ -505,6 +531,7 @@
 				8C0CDD5726F2A133004861CD /* CategoriesViewController.swift in Sources */,
 				8C0CDD6A26F2A93F004861CD /* Links.swift in Sources */,
 				8C98D1F726F2C636001DED5A /* ProductsViewController.swift in Sources */,
+				8CE6B09E26F488910078630C /* RetryAgainView.swift in Sources */,
 				8C0CDD3C26F246F4004861CD /* APIManager.swift in Sources */,
 				8C0CDD3726F246F4004861CD /* CellConfigurable.swift in Sources */,
 				8C0CDD3B26F246F4004861CD /* SectionViewModel.swift in Sources */,
@@ -530,6 +557,7 @@
 				8C0CDD9526F2B3CE004861CD /* CategoriesListViewModel.swift in Sources */,
 				8C0CDD5A26F2A145004861CD /* CategoriesViewModel.swift in Sources */,
 				8C0CDD9426F2B3CE004861CD /* CategoryItemViewModel.swift in Sources */,
+				8CE6B0A226F488A20078630C /* RetryAgainViewModel.swift in Sources */,
 				8C98D20F26F2D198001DED5A /* ProductTableViewModel.swift in Sources */,
 				8C0CDD3926F246F4004861CD /* RowViewModel.swift in Sources */,
 			);

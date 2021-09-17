@@ -14,6 +14,7 @@ class CategoriesViewModel: NSObject {
     let categoriesList = Observable<[Category]>([])
     var didSelectCategory : ((String) -> Void)?
     var showProductPopup : ((Product) -> Void)?
+    var retryViewButtonClick : (() -> Void)?
 
     
     func getCategories(completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)

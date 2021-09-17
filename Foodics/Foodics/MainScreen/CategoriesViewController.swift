@@ -56,6 +56,11 @@ class CategoriesViewController: BaseViewController {
             self.view.showPopup(viewModel: PopupViewModel(product: product))
         }
         
+        self.viewModel.retryViewButtonClick = {
+            self.getCategories()
+        }
+        
+        
     }
     
     // MARK:- Register Cells
@@ -77,11 +82,10 @@ class CategoriesViewController: BaseViewController {
         self.viewModel.getCategories() { (response, error) in
             if error == nil{
                 if let list = response?.data{
-                    self.errorView.isHidden = true
                     self.viewModel.categoriesList.value = list
                 }
             }else{
-                self.errorView.isHidden = false
+                self.addRetryAgainView()
             }
             self.viewModel.isLoading.value = false
         }
@@ -96,9 +100,8 @@ class CategoriesViewController: BaseViewController {
         }
     }
 
-    @IBAction func retryNowButtonAction(_ sender: Any) {
-        self.getCategories()
-        self.errorView.isHidden = true
+    func addRetryAgainView() {
+        self.view.showRetryAgainView(retryButtonClick: self.viewModel.retryViewButtonClick, viewModel: RetryAgainViewModel())
     }
 }
 // MARK:- Table View Data Delegates

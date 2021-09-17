@@ -56,6 +56,9 @@ class ProductsViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
+        self.viewModel.retryViewButtonClick = {
+            self.getProductsByCategory()
+        }
         
     }
     
@@ -78,9 +81,14 @@ class ProductsViewController: BaseViewController {
                 if let list = response?.data{
                     self.viewModel.productsList.value = list
                 }
+            }else{
+                self.addRetryAgainView()
             }
             self.viewModel.isLoading.value = false
         }
+    }
+    func addRetryAgainView() {
+        self.view.showRetryAgainView(retryButtonClick: self.viewModel.retryViewButtonClick, viewModel: RetryAgainViewModel())
     }
 
 }

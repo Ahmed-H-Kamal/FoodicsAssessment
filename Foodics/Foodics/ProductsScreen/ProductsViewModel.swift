@@ -15,7 +15,8 @@ class ProductsViewModel: NSObject {
     var didSelectProduct : ((Product) -> Void)?
     var delegate : SelectProductDelegate?
     let shouldDismiss = Observable<Bool>(false)
-
+    var retryViewButtonClick : (() -> Void)?
+    
     func getProducts(completion: @escaping(_ categories:ProductsList?, _ error: Error?) -> Void)
     {
         let url = "https://api.foodics.dev/v5/products?include=category"
