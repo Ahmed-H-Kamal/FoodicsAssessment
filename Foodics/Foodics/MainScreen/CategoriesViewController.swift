@@ -60,6 +60,16 @@ class CategoriesViewController: BaseViewController {
             self.getCategories()
         }
         
+        self.viewModel.nextButtonPressed = {
+            self.viewModel.selectedPageIndex = 2
+            self.getCategoriesPerPage(pageNo: 2)
+        }
+        
+        self.viewModel.backButtonPressed = {
+            self.viewModel.selectedPageIndex = 1
+            self.getCategoriesPerPage(pageNo: 1)
+        }
+        
         
     }
     
@@ -91,6 +101,19 @@ class CategoriesViewController: BaseViewController {
         }
     }
     
+    func getCategoriesPerPage(pageNo: Int) {
+        self.viewModel.isLoading.value = true
+        self.viewModel.getCategoriesPerPage(page: pageNo) { (response, error) in
+            if error == nil{
+                if let list = response?.data{
+                    self.viewModel.categoriesList.value = list
+                }
+            }else{
+                self.addRetryAgainView()
+            }
+            self.viewModel.isLoading.value = false
+        }
+    }
     
     func goToProductsScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

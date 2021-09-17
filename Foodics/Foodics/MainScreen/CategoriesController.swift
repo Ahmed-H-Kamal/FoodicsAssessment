@@ -19,12 +19,12 @@ class CategoriesController: NSObject, SelectProductDelegate {
     func buildViewModels() {
         var sectionViewModels = [SectionViewModel]()
 
-        let row_header = NavigationHeaderViewModel()
+        let row_header = NavigationHeaderViewModel(with: self.viewModel.selectedPageIndex)
         row_header.didClickNextButton = {
-            
+            self.viewModel.nextButtonPressed?()
         }
         row_header.didClickBackButton = {
-            
+            self.viewModel.backButtonPressed?()
         }
         let section_header = SectionViewModel(rowViewModels: [row_header], sectionHeight: 0, sectionModel: nil)
         sectionViewModels.append(section_header)
