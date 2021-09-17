@@ -14,12 +14,18 @@ class NavigationHeaderViewCell: UITableViewCell, CellConfigurable {
     
     // MARK:- configuration
     func setup(viewModel: RowViewModel) {
-        
+        guard let viewModel = viewModel as? NavigationHeaderViewModel else { return }
+        self.viewModel = viewModel
     }
 
+    @IBAction func nextButtonAction(_ sender: Any) {
+        self.viewModel?.didClickNextButton?()
+    }
     
     
+    @IBAction func backButtonAction(_ sender: Any) {
+        self.viewModel?.didClickBackButton?()
+    }
     
-
 }
 

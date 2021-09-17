@@ -18,6 +18,7 @@ class CategoriesViewController: BaseViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var errorView: UIView!
     
     
     // MARK:- View Did Load
@@ -76,8 +77,11 @@ class CategoriesViewController: BaseViewController {
         self.viewModel.getCategories() { (response, error) in
             if error == nil{
                 if let list = response?.data{
+                    self.errorView.isHidden = true
                     self.viewModel.categoriesList.value = list
                 }
+            }else{
+                self.errorView.isHidden = false
             }
             self.viewModel.isLoading.value = false
         }
@@ -92,6 +96,10 @@ class CategoriesViewController: BaseViewController {
         }
     }
 
+    @IBAction func retryNowButtonAction(_ sender: Any) {
+        self.getCategories()
+        self.errorView.isHidden = true
+    }
 }
 // MARK:- Table View Data Delegates
 extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource

@@ -10,6 +10,9 @@ import Foundation
 
 class NavigationHeaderViewModel: NSObject, RowViewModel {
 
+    var didClickNextButton : (() -> Void)?
+    var didClickBackButton : (() -> Void)?
+
     func cellIdentifier() -> String {
         return NavigationHeaderViewCell.cellIdentifier()
     }
