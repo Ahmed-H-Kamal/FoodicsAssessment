@@ -61,13 +61,15 @@ class CategoriesViewController: BaseViewController {
         }
         
         self.viewModel.nextButtonPressed = {
-            self.viewModel.selectedPageIndex = 2
-            self.getCategoriesPerPage(pageNo: 2)
+            if let next = self.viewModel.links?.next{
+                self.getCategoriesPerPage(pageLink: next)
+            }
         }
         
         self.viewModel.backButtonPressed = {
-            self.viewModel.selectedPageIndex = 1
-            self.getCategoriesPerPage(pageNo: 1)
+            if let prev = self.viewModel.links?.prev{
+                self.getCategoriesPerPage(pageLink: prev)
+            }
         }
         
         
@@ -91,20 +93,26 @@ class CategoriesViewController: BaseViewController {
         self.viewModel.isLoading.value = true
         self.viewModel.getCategories() { (response, error) in
             if error == nil{
+                if let links = response?.links{
+                    self.viewModel.links = links
+                }
                 if let list = response?.data{
                     self.viewModel.categoriesList.value = list
                 }
+
             }else{
                 self.addRetryAgainView()
             }
             self.viewModel.isLoading.value = false
         }
-    }
-    
-    func getCategoriesPerPage(pageNo: Int) {
+    }    
+    func getCategoriesPerPage(pageLink: String) {
         self.viewModel.isLoading.value = true
-        self.viewModel.getCategoriesPerPage(page: pageNo) { (response, error) in
+        self.viewModel.getCategoriesPerPage(page: pageLink) { (response, error) in
             if error == nil{
+                if let links = response?.links{
+                    self.viewModel.links = links
+                }
                 if let list = response?.data{
                     self.viewModel.categoriesList.value = list
                 }

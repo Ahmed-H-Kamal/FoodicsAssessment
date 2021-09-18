@@ -38,13 +38,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8GU-lA-Her">
-                        <rect key="frame" x="0.0" y="0.0" width="1" height="160"/>
-                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="1" id="Qxv-wD-BOA"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IN8-yt-ehu">
                         <rect key="frame" x="266" y="0.0" width="1" height="160"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
@@ -55,14 +48,11 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="8GU-lA-Her" firstAttribute="leading" secondItem="4eB-CC-Pya" secondAttribute="leading" id="5bg-Ul-8yx"/>
-                    <constraint firstItem="8GU-lA-Her" firstAttribute="height" secondItem="4eB-CC-Pya" secondAttribute="height" id="9Zz-PX-5Nf"/>
                     <constraint firstAttribute="trailing" secondItem="raI-Kq-Rfx" secondAttribute="trailing" id="BJ2-dk-iqL"/>
                     <constraint firstAttribute="bottom" secondItem="IN8-yt-ehu" secondAttribute="bottom" id="D0L-fg-Wc4"/>
                     <constraint firstItem="30E-4e-QT8" firstAttribute="leading" secondItem="4i5-tj-ocu" secondAttribute="trailing" constant="7.5" id="ErH-gP-ewX"/>
                     <constraint firstItem="raI-Kq-Rfx" firstAttribute="width" secondItem="4eB-CC-Pya" secondAttribute="width" id="Fyo-6h-Jt2"/>
                     <constraint firstItem="30E-4e-QT8" firstAttribute="centerX" secondItem="4eB-CC-Pya" secondAttribute="centerX" id="LFr-BA-BYV"/>
-                    <constraint firstItem="8GU-lA-Her" firstAttribute="centerY" secondItem="4eB-CC-Pya" secondAttribute="centerY" id="QPB-Oy-S4P"/>
                     <constraint firstItem="30E-4e-QT8" firstAttribute="centerY" secondItem="4eB-CC-Pya" secondAttribute="centerY" id="TRi-fa-6vc"/>
                     <constraint firstAttribute="trailing" secondItem="IN8-yt-ehu" secondAttribute="trailing" id="UgD-Vy-HjY"/>
                     <constraint firstItem="IN8-yt-ehu" firstAttribute="top" secondItem="4eB-CC-Pya" secondAttribute="top" id="a1h-Od-mER"/>

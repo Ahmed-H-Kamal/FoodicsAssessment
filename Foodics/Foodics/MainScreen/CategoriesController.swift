@@ -19,7 +19,7 @@ class CategoriesController: NSObject, SelectProductDelegate {
     func buildViewModels() {
         var sectionViewModels = [SectionViewModel]()
 
-        let row_header = NavigationHeaderViewModel(with: self.viewModel.selectedPageIndex)
+        let row_header = NavigationHeaderViewModel(with: self.viewModel.links)
         row_header.didClickNextButton = {
             self.viewModel.nextButtonPressed?()
         }

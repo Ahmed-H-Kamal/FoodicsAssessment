@@ -19,36 +19,18 @@ class NavigationHeaderViewCell: UITableViewCell, CellConfigurable {
         guard let viewModel = viewModel as? NavigationHeaderViewModel else { return }
         self.viewModel = viewModel
         
-        if self.viewModel?.selectedPageIndex == 1{
-            self.nextButton.isEnabled = true
-            self.backButton.isEnabled = false
-        }else{
-            self.nextButton.isEnabled = false
-            self.backButton.isEnabled = true
-        }
+        self.backButton.isEnabled = (self.viewModel?.links?.prev != nil)
+        self.nextButton.isEnabled = (self.viewModel?.links?.next != nil)
+
     }
 
     @IBAction func nextButtonAction(_ sender: Any) {
         self.viewModel?.didClickNextButton?()
-        if self.viewModel?.selectedPageIndex == 2{
-            self.nextButton.isEnabled = false
-            self.backButton.isEnabled = true
-        }else{
-            self.nextButton.isEnabled = true
-            self.backButton.isEnabled = false
-        }
     }
     
     
     @IBAction func backButtonAction(_ sender: Any) {
         self.viewModel?.didClickBackButton?()
-        if self.viewModel?.selectedPageIndex == 1{
-            self.nextButton.isEnabled = true
-            self.backButton.isEnabled = false
-        }else{
-            self.nextButton.isEnabled = false
-            self.backButton.isEnabled = true
-        }
     }
     
 }

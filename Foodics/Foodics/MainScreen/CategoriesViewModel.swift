@@ -18,7 +18,8 @@ class CategoriesViewModel: NSObject {
     var nextButtonPressed : (() -> Void)?
     var backButtonPressed : (() -> Void)?
     var selectedPageIndex = 1
-    
+    var links : Links?
+
     func getCategories(completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
     {
         let url = "https://api.foodics.dev/v5/categories"
@@ -61,5 +62,26 @@ class CategoriesViewModel: NSObject {
         }
     }
     
+    
+    func getCategoriesPerPage(page: String, completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
+    {
+        let url = page
+        
+        ApiManager.makeApiCall(with: url, method: .get) { (response, error) in
+            if (error != nil) {
+                completion (nil, error!)
+            }
+            else {
+                if let data = response {
+                    do {
+                        let decoded = try JSONDecoder().decode(CategoriesList.self, from: data)
+                        completion (decoded, nil)
+                    } catch {
+                        print("*** ERROR *** \(error)")
+                    }
+                }
+            }
+        }
+    }
     
 }
