@@ -60,6 +60,18 @@ class ProductsViewController: BaseViewController {
             self.getProductsByCategory()
         }
         
+        self.viewModel.nextButtonPressed = {
+            if let next = self.viewModel.links?.next{
+                self.getProductsByCategoryPerPage(page: next)
+            }
+        }
+        
+        self.viewModel.backButtonPressed = {
+            if let prev = self.viewModel.links?.prev{
+                self.getProductsByCategoryPerPage(page: prev)
+            }
+        }
+        
     }
     
     // MARK:- Register Cells
@@ -70,6 +82,8 @@ class ProductsViewController: BaseViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.tableView.register(UINib.init(nibName: NavigationHeaderViewCell.cellIdentifier(), bundle: nil), forCellReuseIdentifier: NavigationHeaderViewCell.cellIdentifier())
+
         self.tableView.register(UINib.init(nibName: ProductTableViewCell.cellIdentifier(), bundle: nil), forCellReuseIdentifier: ProductTableViewCell.cellIdentifier())
 
     }
@@ -78,6 +92,9 @@ class ProductsViewController: BaseViewController {
         self.viewModel.isLoading.value = true
         self.viewModel.getProducts() { (response, error) in
             if error == nil{
+                if let links = response?.links{
+                    self.viewModel.links = links
+                }
                 if let list = response?.data{
                     self.viewModel.productsList.value = list
                 }
@@ -87,6 +104,24 @@ class ProductsViewController: BaseViewController {
             self.viewModel.isLoading.value = false
         }
     }
+    
+    func getProductsByCategoryPerPage(page: String) {
+        self.viewModel.isLoading.value = true
+        self.viewModel.getProductsPerPage(page: page) { (response, error) in
+            if error == nil{
+                if let links = response?.links{
+                    self.viewModel.links = links
+                }
+                if let list = response?.data{
+                    self.viewModel.productsList.value = list
+                }
+            }else{
+                self.addRetryAgainView()
+            }
+            self.viewModel.isLoading.value = false
+        }
+    }
+    
     func addRetryAgainView() {
         self.view.showRetryAgainView(retryButtonClick: self.viewModel.retryViewButtonClick, viewModel: RetryAgainViewModel())
     }
@@ -132,6 +167,8 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource
         let rowViewModel = sectionViewModel.rowViewModels[indexPath.row]
 
             switch rowViewModel {
+            case is NavigationHeaderViewModel:
+                return 50
             case is ProductTableViewModel:
                 return 160
             default:

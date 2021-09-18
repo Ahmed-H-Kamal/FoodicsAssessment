@@ -16,6 +16,9 @@ class ProductsViewModel: NSObject {
     var delegate : SelectProductDelegate?
     let shouldDismiss = Observable<Bool>(false)
     var retryViewButtonClick : (() -> Void)?
+    var nextButtonPressed : (() -> Void)?
+    var backButtonPressed : (() -> Void)?
+    var links : Links?
     
     func getProducts(completion: @escaping(_ categories:ProductsList?, _ error: Error?) -> Void)
     {
@@ -38,5 +41,24 @@ class ProductsViewModel: NSObject {
         }
     }
     
-    
+    func getProductsPerPage(page: String, completion: @escaping(_ categories:ProductsList?, _ error: Error?) -> Void)
+    {
+        let url = page
+        
+        ApiManager.makeApiCall(with: url, method: .get) { (response, error) in
+            if (error != nil) {
+                completion (nil, error!)
+            }
+            else {
+                if let data = response {
+                    do {
+                        let decoded = try JSONDecoder().decode(ProductsList.self, from: data)
+                        completion (decoded, nil)
+                    } catch {
+                        print("*** ERROR *** \(error)")
+                    }
+                }
+            }
+        }
+    }
 }

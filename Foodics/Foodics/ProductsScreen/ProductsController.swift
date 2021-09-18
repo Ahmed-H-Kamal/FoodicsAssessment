@@ -21,6 +21,17 @@ class ProductsController: NSObject {
     func buildViewModels() {
         var sectionViewModels = [SectionViewModel]()
         
+        let row_header = NavigationHeaderViewModel(with: self.viewModel.links)
+        row_header.didClickNextButton = {
+            self.viewModel.nextButtonPressed?()
+        }
+        row_header.didClickBackButton = {
+            self.viewModel.backButtonPressed?()
+        }
+        let section_header = SectionViewModel(rowViewModels: [row_header], sectionHeight: 0, sectionModel: nil)
+        sectionViewModels.append(section_header)
+        
+        
         let row_products = getProductsByCategoryViewModels()
         let section_products = SectionViewModel(rowViewModels: row_products, sectionHeight: 0, sectionModel: nil)
         sectionViewModels.append(section_products)

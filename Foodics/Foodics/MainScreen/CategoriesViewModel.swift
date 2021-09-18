@@ -17,7 +17,6 @@ class CategoriesViewModel: NSObject {
     var retryViewButtonClick : (() -> Void)?
     var nextButtonPressed : (() -> Void)?
     var backButtonPressed : (() -> Void)?
-    var selectedPageIndex = 1
     var links : Links?
 
     func getCategories(completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
