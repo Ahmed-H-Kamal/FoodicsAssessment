@@ -21,7 +21,7 @@ class CategoriesViewModel: NSObject {
 
     func getCategories(completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
     {
-        let url = "https://api.foodics.dev/v5/categories"
+        let url = Constants.categories
         
         ApiManager.makeApiCall(with: url, method: .get) { (response, error) in
             if (error != nil) {
@@ -30,6 +30,7 @@ class CategoriesViewModel: NSObject {
             else {
                 if let data = response {
                     do {
+                        self.saveResponseLocally(data: data, key: url)
                         let decoded = try JSONDecoder().decode(CategoriesList.self, from: data)
                         completion (decoded, nil)
                     } catch {
@@ -39,28 +40,6 @@ class CategoriesViewModel: NSObject {
             }
         }
     }
-    
-    func getCategoriesPerPage(page: Int, completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
-    {
-        let url = "https://api.foodics.dev/v5/categories?page=\(String(page))"
-        
-        ApiManager.makeApiCall(with: url, method: .get) { (response, error) in
-            if (error != nil) {
-                completion (nil, error!)
-            }
-            else {
-                if let data = response {
-                    do {
-                        let decoded = try JSONDecoder().decode(CategoriesList.self, from: data)
-                        completion (decoded, nil)
-                    } catch {
-                        print("*** ERROR *** \(error)")
-                    }
-                }
-            }
-        }
-    }
-    
     
     func getCategoriesPerPage(page: String, completion: @escaping(_ categories:CategoriesList?, _ error: Error?) -> Void)
     {
@@ -73,6 +52,7 @@ class CategoriesViewModel: NSObject {
             else {
                 if let data = response {
                     do {
+                        self.saveResponseLocally(data: data, key: url)
                         let decoded = try JSONDecoder().decode(CategoriesList.self, from: data)
                         completion (decoded, nil)
                     } catch {
@@ -81,6 +61,26 @@ class CategoriesViewModel: NSObject {
                 }
             }
         }
+    }
+    
+    func saveResponseLocally(data: Data?, key: String?) {
+        if let data = data, let key = key{
+            UserDefaults.standard.set(data, forKey: key)
+        }
+    }
+    
+    func getSavedCategories(key: String?) -> CategoriesList? {
+        if let key = key{
+            if let data = UserDefaults.standard.value(forKey: key) as? Data{
+                do {
+                    let decoded = try JSONDecoder().decode(CategoriesList.self, from: data)
+                    return decoded
+                } catch {
+                    print("*** ERROR *** \(error)")
+                }
+            }
+        }
+        return nil
     }
     
 }

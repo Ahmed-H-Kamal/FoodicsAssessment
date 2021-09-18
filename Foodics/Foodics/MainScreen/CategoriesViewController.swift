@@ -26,7 +26,7 @@ class CategoriesViewController: BaseViewController {
         super.viewDidLoad()
         self.registerCells()
         self.setupBinding()
-        self.getCategories()
+        self.getCategoriesLocalIfFound()
     }
     
     private func setupBinding() {
@@ -57,18 +57,18 @@ class CategoriesViewController: BaseViewController {
         }
         
         self.viewModel.retryViewButtonClick = {
-            self.getCategories()
+            self.getCategoriesLocalIfFound()
         }
         
         self.viewModel.nextButtonPressed = {
             if let next = self.viewModel.links?.next{
-                self.getCategoriesPerPage(pageLink: next)
+                self.getCategoriesPerPageLocalIfFound(pageLink: next)
             }
         }
         
         self.viewModel.backButtonPressed = {
             if let prev = self.viewModel.links?.prev{
-                self.getCategoriesPerPage(pageLink: prev)
+                self.getCategoriesPerPageLocalIfFound(pageLink: prev)
             }
         }
         
@@ -89,6 +89,30 @@ class CategoriesViewController: BaseViewController {
 
     }
     
+    func getCategoriesLocalIfFound() {
+        if let categories = self.viewModel.getSavedCategories(key: Constants.categories){
+            if let links = categories.links{
+                self.viewModel.links = links
+            }
+            if let list = categories.data{
+                self.viewModel.categoriesList.value = list
+            }
+        }else{
+            self.getCategories()
+        }
+    }
+    func getCategoriesPerPageLocalIfFound(pageLink: String) {
+        if let categories = self.viewModel.getSavedCategories(key: pageLink){
+            if let links = categories.links{
+                self.viewModel.links = links
+            }
+            if let list = categories.data{
+                self.viewModel.categoriesList.value = list
+            }
+        }else{
+            self.getCategoriesPerPage(pageLink: pageLink)
+        }
+    }
     func getCategories() {
         self.viewModel.isLoading.value = true
         self.viewModel.getCategories() { (response, error) in
@@ -99,7 +123,6 @@ class CategoriesViewController: BaseViewController {
                 if let list = response?.data{
                     self.viewModel.categoriesList.value = list
                 }
-
             }else{
                 self.addRetryAgainView()
             }

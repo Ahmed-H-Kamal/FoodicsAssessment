@@ -25,7 +25,7 @@ class ProductsViewController: BaseViewController {
         super.viewDidLoad()
         self.registerCells()
         self.setupBinding()
-        self.getProductsByCategory()
+        self.getProductsLocalIfFound()
     }
     
     private func setupBinding() {
@@ -57,18 +57,18 @@ class ProductsViewController: BaseViewController {
             }
         }
         self.viewModel.retryViewButtonClick = {
-            self.getProductsByCategory()
+            self.getProductsLocalIfFound()
         }
         
         self.viewModel.nextButtonPressed = {
             if let next = self.viewModel.links?.next{
-                self.getProductsByCategoryPerPage(page: next)
+                self.getProductsPerPageLocalIfFound(page: next)
             }
         }
         
         self.viewModel.backButtonPressed = {
             if let prev = self.viewModel.links?.prev{
-                self.getProductsByCategoryPerPage(page: prev)
+                self.getProductsPerPageLocalIfFound(page: prev)
             }
         }
         
@@ -119,6 +119,33 @@ class ProductsViewController: BaseViewController {
                 self.addRetryAgainView()
             }
             self.viewModel.isLoading.value = false
+        }
+    }
+    
+    
+    func getProductsLocalIfFound() {
+        if let products = self.viewModel.getSavedProducts(key: Constants.products){
+            if let links = products.links{
+                self.viewModel.links = links
+            }
+            if let list = products.data{
+                self.viewModel.productsList.value = list
+            }
+        }else{
+            self.getProductsByCategory()
+        }
+    }
+    
+    func getProductsPerPageLocalIfFound(page: String) {
+        if let products = self.viewModel.getSavedProducts(key: page){
+            if let links = products.links{
+                self.viewModel.links = links
+            }
+            if let list = products.data{
+                self.viewModel.productsList.value = list
+            }
+        }else{
+            self.getProductsByCategoryPerPage(page: page)
         }
     }
     

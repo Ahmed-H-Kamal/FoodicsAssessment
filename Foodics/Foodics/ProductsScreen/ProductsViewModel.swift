@@ -22,7 +22,7 @@ class ProductsViewModel: NSObject {
     
     func getProducts(completion: @escaping(_ categories:ProductsList?, _ error: Error?) -> Void)
     {
-        let url = "https://api.foodics.dev/v5/products?include=category"
+        let url = Constants.products
         
         ApiManager.makeApiCall(with: url, method: .get) { (response, error) in
             if (error != nil) {
@@ -31,6 +31,7 @@ class ProductsViewModel: NSObject {
             else {
                 if let data = response {
                     do {
+                        self.saveResponseLocally(data: data, key: url)
                         let decoded = try JSONDecoder().decode(ProductsList.self, from: data)
                         completion (decoded, nil)
                     } catch {
@@ -52,6 +53,7 @@ class ProductsViewModel: NSObject {
             else {
                 if let data = response {
                     do {
+                        self.saveResponseLocally(data: data, key: url)
                         let decoded = try JSONDecoder().decode(ProductsList.self, from: data)
                         completion (decoded, nil)
                     } catch {
@@ -61,4 +63,25 @@ class ProductsViewModel: NSObject {
             }
         }
     }
+    
+    func saveResponseLocally(data: Data?, key: String?) {
+        if let data = data, let key = key{
+            UserDefaults.standard.set(data, forKey: key)
+        }
+    }
+    
+    func getSavedProducts(key: String?) -> ProductsList? {
+        if let key = key{
+            if let data = UserDefaults.standard.value(forKey: key) as? Data{
+                do {
+                    let decoded = try JSONDecoder().decode(ProductsList.self, from: data)
+                    return decoded
+                } catch {
+                    print("*** ERROR *** \(error)")
+                }
+            }
+        }
+        return nil
+    }
+    
 }
