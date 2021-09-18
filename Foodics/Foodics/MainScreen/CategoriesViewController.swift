@@ -157,6 +157,14 @@ class CategoriesViewController: BaseViewController {
     func addRetryAgainView() {
         self.view.showRetryAgainView(retryButtonClick: self.viewModel.retryViewButtonClick, viewModel: RetryAgainViewModel())
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { context in
+            self.tableView.reloadData()
+        }, completion: { context in
+        })
+    }
 }
 // MARK:- Table View Data Delegates
 extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource
