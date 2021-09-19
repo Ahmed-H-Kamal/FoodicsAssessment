@@ -55,6 +55,7 @@ extension UIColor
 extension UIView{
     func showPopup(viewModel: PopupViewModel){
         if let popupView = PopupView.createViewWithMode(viewModel: viewModel){
+            popupView.center = self.convert(self.center, from: popupView);
             self.addSubview(popupView)
             self.bringSubviewToFront(popupView)
         }
@@ -63,6 +64,7 @@ extension UIView{
     func showRetryAgainView(retryButtonClick: (() -> Void)? ,viewModel: RetryAgainViewModel){
         if let view = RetryAgainView.createViewWithMode(viewModel: viewModel){
             view.viewModel?.retryButtonClick = retryButtonClick
+            view.center = self.convert(self.center, from: view);
             self.addSubview(view)
             self.bringSubviewToFront(view)
         }
